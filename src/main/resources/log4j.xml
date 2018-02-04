@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.ese.study">
+	<logger name="com.ese">
 		<level value="info" />
 	</logger>
 	

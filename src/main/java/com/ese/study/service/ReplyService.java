@@ -2,6 +2,7 @@ package com.ese.study.service;
 
 import java.util.List;
 
+import com.ese.study.domain.Criteria;
 import com.ese.study.domain.ReplyVO;
 
 /**
@@ -20,4 +21,8 @@ public interface ReplyService {
 	public void modifyReply(ReplyVO vo) throws Exception;  		  // 댓글 수정
 	
 	public void removeReply(Integer rno) throws Exception; 		  // 댓글 삭제
+	
+	public List<ReplyVO> listReplyPage(Integer bno, Criteria cri) throws Exception;
+	
+	public int count(Integer bno) throws Exception;
 }

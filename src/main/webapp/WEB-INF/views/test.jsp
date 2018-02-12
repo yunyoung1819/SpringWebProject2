@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 
 <style>
-
 #modDiv {
 	width: 300px;
 	height: 100px;
@@ -20,9 +19,38 @@
 	padding: 10px;
 	z-index: 1000;
 }
+
+.pagination {
+  width: 100%;
+}
+
+.pagination li{
+  list-style: none;
+  float: left; 
+  padding: 3px; 
+  border: 1px solid blue;
+  margin:3px;  
+}
+
+.pagination li a{
+  margin: 3px;
+  text-decoration: none;  
+}
 </style>
 </head>
 <body>
+
+	<div id='modDiv' style="display: none;">
+	<!-- display:none를 적용하면 화면에서 보이지 않게 된다 -->
+		<div class='modal-title'></div>
+		<div>
+			<input type='text' id='replytext'>
+		</div>
+		<div>
+			<button type="button" id="replyModBtn">Modify</button>
+			<button type="button" id="replyDelBtn">DELETE</button>
+		</div>
+	</div>
 
 	<h2> Ajax Test Page </h2>
 	
@@ -36,17 +64,7 @@
 		<button id="replyAddBtn">ADD REPLY</button>
 	</div>
 	
-	<div id='modDiv' style="display: none;">
-	<!-- display:none를 적용하면 화면에서 보이지 않게 된다 -->
-		<div class='modal-title'></div>
-		<div>
-			<input type='text' id='replytext'>
-		</div>
-		<div>
-			<button type="button" id="replyModBtn">Modify</button>
-			<button type="button" id="replyDelBtn">DELETE</button>
-		</div>
-	</div>
+
 	
 	<ul id="replies">
 	</ul>	
@@ -57,10 +75,13 @@
 	
 	<!-- jQuery 2.1.4 -->
 	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	
 	<script type="text/javascript">
 	
 	/* 댓글 목록 조회 */
 	var bno = 2;
+	
+	getPageList(1);
 	
 	function getAllList(){
 		$.getJSON("/replies/all/" + bno, function(data){
@@ -174,9 +195,57 @@
 	/* 댓글 페이징 처리*/
 	function getPageList(page){
 		
-		$.getJSON("/replies")
+		$.getJSON("/replies/" + bno + "/" + page, function(data){
+			
+			var str = "";
+			
+			$(data.list).each(function(){
+				str += "<li data-rno='"+this.rno+"' class='replyLi'>"
+				+ this.rno + ":" + this.replytext +
+				"<button>MDO</button></li>";
+			});
+			
+			$("#replies").html(str);
+			
+			printPaging(data.pageMaker);
+		});
 	}
 	
+	/* 화면에 페이지 번호 출력 */
+	function printPaging(pageMaker){
+		
+		var str = "";
+		
+		if(pageMaker.prev){
+			str += "<li><a href='"+(pageMaker.startPage-1)+"'> << </a></li>";
+		}
+		
+		for(var i = pageMaker.startPage, len=pageMaker.endPage; i<=len; i++){
+			var strClass = pageMaker.cri.page == i?'class=active':'';
+			str += "<li "+strClass+"><a href='"+i+"'>"+i+"</li>";
+		}
+		
+		if(pageMaker.next){
+			str += "<li><a href='"+(pageMaker.endPage + 1)+"'> >> </a></li>";
+		}
+		
+		$('.pagination').html(str);
+	}
+	
+	/* 페이지 번호 이벤트 처리 */
+	var replyPage = 1;
+	
+	$(".pagination").on("click", "li a", function(event){
+		
+		event.preventDefault();
+		
+		replyPage = $(this).attr("href");
+		
+		console.log("************");
+		console.log(replyPage);
+		
+		getPageList(replyPage);
+	});
 	</script>
 </body>
 </html>

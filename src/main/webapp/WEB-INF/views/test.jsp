@@ -79,7 +79,7 @@
 	<script type="text/javascript">
 	
 	/* 댓글 목록 조회 */
-	var bno = 2;
+	var bno = 720896;
 	
 	getPageList(1);
 	
@@ -122,7 +122,8 @@
 				
 				if(result == 'SUCCESS'){
 					alert("등록 되었습니다.");
-					getAllList();
+					//getAllList();
+					getPageList(replyPage);
 				}
 			}
 		});
@@ -160,7 +161,8 @@
 				if(result == 'SUCCESS'){
 					alert("삭제되었습니다");
 					$("#modDiv").hide("slow");
-					getAllList();
+					//getAllList();
+					getPageList(replyPage);
 				}
 			}
 		});
@@ -185,8 +187,8 @@
 					if(result == 'SUCCESS'){
 						alert("수정되었습니다.")
 						$("#modDiv").hide("slow");
-						getAllList();
-						//getPageList(replyPage);
+						//getAllList();
+						getPageList(replyPage);
 					}
 				}
 			});

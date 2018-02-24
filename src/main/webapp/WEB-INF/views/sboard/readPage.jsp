@@ -87,6 +87,21 @@
 	</div>
 	<!-- /.row -->
 	
+	<!-- Modal -->
+	<!-- 수정과 삭제를 위한 Modal창(팝업과 유사하지만 다른 작업을 할 수 없도록 제한된 팝업) -->
+	<div id="modifyModal" class="modal modal-primary fade" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content -->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title"></h4>
+			</div>
+			<div class="modal-body" data-rno>
+			</div>
+		</div>
+		</div>
+	</div>
 </section>
 <!-- /.content-wrapper -->
 

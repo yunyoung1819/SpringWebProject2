@@ -237,7 +237,7 @@ $(document).ready(function(){
 			dataType : 'text',
 			data : JSON.stringify({bno:bno, replyer:replyer, replytext:replytext}),
 			success : function(result){
-				console.log("댓글 성공 result: " + result);
+				console.log("result: " + result);
 				if(result == 'SUCCESS'){
 					alert("등록 되었습니다.");
 					replyPage = 1;

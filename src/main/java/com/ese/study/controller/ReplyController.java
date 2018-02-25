@@ -36,7 +36,7 @@ public class ReplyController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public ResponseEntity<String> register(@RequestBody ReplyVO vo){
 		
-		System.out.println("Contorller");
+		System.out.println("댓글 추가");
 		
 		ResponseEntity<String> entity = null;
 		
@@ -58,15 +58,15 @@ public class ReplyController {
 	@RequestMapping(value = "/all/{bno}", method = RequestMethod.GET)
 	public ResponseEntity<List<ReplyVO>> list(@PathVariable("bno") Integer bno){
 		
+		System.out.println("댓글 목록 조회");
 		ResponseEntity<List<ReplyVO>> entity = null;
 		
 		try{
-			entity = new ResponseEntity<List<ReplyVO>>(
-					service.listReply(bno), HttpStatus.OK);
+			entity = new ResponseEntity<>(service.listReply(bno), HttpStatus.OK);
 			
 		}catch(Exception e){
 			e.printStackTrace();
-			entity = new ResponseEntity<List<ReplyVO>>(HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;
 	}
@@ -111,6 +111,7 @@ public class ReplyController {
 	public ResponseEntity<Map<String, Object>> listPage(@PathVariable("bno") Integer bno,
 														@PathVariable("page") Integer page){
 		
+		System.out.println("목록가기");
 		ResponseEntity<Map<String, Object>> entity = null;
 		
 		try{

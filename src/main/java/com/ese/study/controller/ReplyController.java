@@ -71,10 +71,11 @@ public class ReplyController {
 		return entity;
 	}
 	
-	// 수정처리
+	// 댓글 수정 
 	@RequestMapping(value = "/{rno}", method = {RequestMethod.PUT, RequestMethod.PATCH})
 	public ResponseEntity<String> update(@PathVariable("rno") Integer rno, @RequestBody ReplyVO vo){
 		
+		System.out.println("댓글수정");
 		ResponseEntity<String> entity = null;
 		
 		try{
@@ -89,10 +90,11 @@ public class ReplyController {
 		return entity;
 	}
 	
-	// 삭제 처리
+	// 댓글 삭제
 	@RequestMapping(value = "/{rno}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> remove(@PathVariable("rno") Integer rno){
 		
+		System.out.println("댓글삭제");
 		ResponseEntity<String> entity = null;
 		
 		try{

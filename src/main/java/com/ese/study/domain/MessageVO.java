@@ -15,6 +15,7 @@ public class MessageVO {
 	private String message;
 	private Date opendate;
 	private Date senddate;
+	
 	public Integer getMid() {
 		return mid;
 	}
@@ -51,6 +52,7 @@ public class MessageVO {
 	public void setSenddate(Date senddate) {
 		this.senddate = senddate;
 	}
+	
 	@Override
 	public String toString() {
 		return "MessageVO [mid=" + mid + ", targetid=" + targetid + ", sender=" + sender + ", message=" + message

@@ -14,7 +14,8 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>	
+
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/book_ex"></property>
@@ -35,8 +36,6 @@
 	<context:component-scan base-package="com.ese.study.persistence"></context:component-scan>
 	<context:component-scan base-package="com.ese.study.service"></context:component-scan>
 	<context:component-scan base-package="com.ese.study.aop"></context:component-scan>
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>	
-	
 	<aop:config>
 	</aop:config>
 </beans>

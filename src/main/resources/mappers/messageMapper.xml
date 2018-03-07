@@ -5,18 +5,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.ese.mapper.MessageMapper">
 
-<insert id="create">
-	insert into tbl_message(targetid, sender, message) 
-	values (#{targetid}, #{sender}, #{message})
-</insert>
+	<insert id="create">
+		insert into tbl_message (targetid, sender,message)
+		values (#{targetid}, #{sender}, #{message})
+	</insert>
 
-<select id="readMessage" resultType="com.ese.study.domain.MessageVO">
-	select * from tbl_message where mid = #{mid}
-</select>
 
-<update id="updateState">
-	update tbl_message set opendate = now()
-	where mid = #{mid}
-</update>
+	<select id="readMessage" resultType="MessageVO">
+		select * from tbl_message where mid = #{mid}
+	</select>
+
+	<update id="updateState">
+		update tbl_message set opendate = now() where mid= #{mid}
+	</update>
+
 
 </mapper>

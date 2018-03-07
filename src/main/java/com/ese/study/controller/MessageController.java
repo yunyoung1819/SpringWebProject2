@@ -13,24 +13,24 @@ import com.ese.study.domain.MessageVO;
 import com.ese.study.service.MessageService;
 
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/messages")
 public class MessageController {
 
 	@Inject
 	private MessageService service;
 	
-	@RequestMapping(value="/", method = RequestMethod.POST)
-	public ResponseEntity<String> addMessage(@RequestBody MessageVO vo){
-		
-		ResponseEntity<String> entity = null;
-		
-		try{
-			service.addMessage(vo);
-			entity = new ResponseEntity<>("SUCCES", HttpStatus.OK);
-		}catch(Exception e){
-			e.printStackTrace();
-			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
+	  @RequestMapping(value = "/", method = RequestMethod.POST)
+	  public ResponseEntity<String> addMessage(@RequestBody MessageVO vo) {
+		  
+	    ResponseEntity<String> entity = null;
+	    try {
+	      System.out.println("message Controller");
+	      service.addMessage(vo);
+	      entity = new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	      entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	    }
+	    return entity;
+	  }
 }

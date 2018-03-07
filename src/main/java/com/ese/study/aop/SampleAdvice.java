@@ -30,4 +30,19 @@ public class SampleAdvice {
 		// Object getTarget() : target 객체를 알아낼 때 사용
 		// Object getThis() : Advice를 행하는 객체를 알아낼 때 사용
 	}
+	
+	@Around("execution(* com.ese.study.service.MessageService*.*(..))")
+	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable{
+		
+		long startTime = System.currentTimeMillis();
+		logger.info(Arrays.toString(pjp.getArgs()));
+		
+		Object result = pjp.proceed();
+		
+		long endTime = System.currentTimeMillis();
+		logger.info(pjp.getSignature().getName() + ":" + (endTime - startTime));
+		logger.info("==========Around==============");
+		
+		return result;
+	}
 }

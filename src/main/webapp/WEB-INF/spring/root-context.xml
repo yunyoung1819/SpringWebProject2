@@ -33,6 +33,12 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 	
+	<!-- 트랜잭션 매니저의 설정  -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<tx:annotation-driven/>
 	<context:component-scan base-package="com.ese.study.persistence"></context:component-scan>
 	<context:component-scan base-package="com.ese.study.service"></context:component-scan>
 	<context:component-scan base-package="com.ese.study.aop"></context:component-scan>

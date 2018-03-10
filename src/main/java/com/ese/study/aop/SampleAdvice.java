@@ -17,7 +17,7 @@ public class SampleAdvice {
 
 	private static final Logger logger = LoggerFactory.getLogger(SampleAdvice.class);
 	
-	@Before("execution(* com.ese.study.service.MessageService*.*(..))")
+	//@Before("execution(* com.ese.study.service.MessageService*.*(..))")
 	public void startLog(JoinPoint jp){
 		
 		logger.info("-----------------------------------------");
@@ -31,7 +31,7 @@ public class SampleAdvice {
 		// Object getThis() : Advice를 행하는 객체를 알아낼 때 사용
 	}
 	
-	@Around("execution(* com.ese.study.service.MessageService*.*(..))")
+	//@Around("execution(* com.ese.study.service.MessageService*.*(..))")
 	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable{
 		
 		long startTime = System.currentTimeMillis();

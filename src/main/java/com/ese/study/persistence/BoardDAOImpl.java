@@ -1,5 +1,6 @@
 package com.ese.study.persistence;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,5 +95,17 @@ public class BoardDAOImpl implements BoardDAO {
 	public List<BoardVO> excelDown(Map<String, Object> paramMap) throws Exception {
 		System.out.println("excel dao");
 		return session.selectList(namespace + ".listExcel");
+	}
+
+	// 댓글의 숫자를 업데이트 처리
+	@Override
+	public void updateReplyCnt(Integer bno, int amount) throws Exception {
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		
+		paramMap.put("bno", bno);
+		paramMap.put("amount", amount);
+		
+		session.update(namespace + ".updateReplyCnt", paramMap);
 	}
 }

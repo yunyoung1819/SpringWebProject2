@@ -45,4 +45,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	from tbl_reply
 	where bno = #{bno}
 </select>
+
+<!-- 댓글이 삭제될 때 해당 게시물의 번호를 알아내는 기능 -->
+<select id="getBno" resultType="int">
+	select bno 
+	from tbl_reply
+	where rno = #{rno}
+</select>
+
 </mapper>

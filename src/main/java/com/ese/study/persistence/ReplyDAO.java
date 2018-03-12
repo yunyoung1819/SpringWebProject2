@@ -19,4 +19,6 @@ public interface ReplyDAO {
 	public List<ReplyVO> listPage(Integer bno, Criteria cri) throws Exception;
 	
 	public int count(Integer bno) throws Exception;
+	
+	public int getBno(Integer rno) throws Exception; // 댓글이 삭제될 때 해당 게시물의 번호를 알아낸다
 }

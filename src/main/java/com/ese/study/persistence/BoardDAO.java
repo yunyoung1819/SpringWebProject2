@@ -34,6 +34,6 @@ public interface BoardDAO {
 	
 	public List<BoardVO> excelDown(Map<String, Object> paramMap) throws Exception;
 	
-	
+	public void updateReplyCnt(Integer bno, int amount) throws Exception; // 댓글의 숫자를 변경
 	
 }

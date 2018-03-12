@@ -53,7 +53,7 @@ order by bno desc, regdate desc
 <select id="listCriteria" resultType="BoardVO">
 <![CDATA[
 	select 
-		bno, title, content, writer, regdate, viewcnt	
+		bno, title, content, writer, regdate, viewcnt, replycnt	
 	from
 		tbl_board
 	where bno > 0
@@ -134,4 +134,10 @@ where bno < 100
 ]]>
 </select>
 
+<!-- 댓글의 숫자를 업데이트 -->
+<update id="updateReplyCnt">
+	update tbl_board 
+	set replycnt = replycnt + #{amount} 
+	where bno = #{bno}
+</update>
 </mapper>

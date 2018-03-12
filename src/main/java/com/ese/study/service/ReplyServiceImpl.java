@@ -49,7 +49,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Transactional // 트랜잭션 처리
 	@Override
 	public void removeReply(Integer rno) throws Exception {
-		
+		System.out.println("트랜잭션 처리");
 		int bno = replyDAO.getBno(rno); //해당 게시물의 번호를 가져온다
 		replyDAO.delete(rno); //댓글을 삭제하고
 		boardDAO.updateReplyCnt(bno, -1);  //댓글의 수를 -1 감소시킨다

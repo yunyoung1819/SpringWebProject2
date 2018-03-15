@@ -47,7 +47,7 @@
 							<td>${boardVO.bno}</td>
 							<td>
 								<a href='/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${boardVO.bno}'>
-									${boardVO.title}
+									${boardVO.title} <strong>[ ${boardVO.replycnt} ]</strong><!-- 댓글 숫자 미리보기 기능 -->
 								</a>
 							</td>
 							<td>${boardVO.writer}</td>

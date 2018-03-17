@@ -140,4 +140,11 @@ where bno < 100
 	set replycnt = replycnt + #{amount} 
 	where bno = #{bno}
 </update>
+
+<!-- 특정 게시물의 조회수를 1씩 증가 -->
+<update id="updateViewCnt">
+	update tbl_board
+	set viewcnt = viewcnt + 1
+	where bno = #{bno}
+</update>
 </mapper>

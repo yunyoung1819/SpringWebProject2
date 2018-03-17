@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.util.UriUtils;
 
 import com.ese.study.domain.BoardVO;
@@ -42,6 +44,7 @@ import jxl.write.WritableWorkbook;
 //
 @Service
 public class BoardServiceImpl implements BoardService {
+	
 	@Inject
 	private BoardDAO dao;
 	
@@ -50,8 +53,10 @@ public class BoardServiceImpl implements BoardService {
 		dao.create(board);
 	}
 
+	@Transactional(isolation=Isolation.READ_COMMITTED)  // 격리 수준은 대부분의 데이터베이스가 기존 사용 수준. 다른 연결이 커밋하지 않은 데이터는 볼 수 없다
 	@Override
 	public BoardVO read(Integer bno) throws Exception {
+		dao.updateViewCnt(bno);;
 		return dao.read(bno);
 	}
 

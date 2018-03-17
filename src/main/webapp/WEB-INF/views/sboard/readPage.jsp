@@ -75,7 +75,11 @@
 			<!-- The time line -->
 			<ul class="timeline">
 				<!-- timeline time label -->
-				<li class="time-label" id="repliesDiv"><span class="bg-green">댓글목록 열기</span></li>
+				<li class="time-label" id="repliesDiv">
+					<span class="bg-green">
+					댓글목록 열기 <small id='replycntSmall'> [ ${boardVO.replycnt} ] </small>
+					</span>
+				</li>
 			</ul>
 			
 			<div class='text-center'>
@@ -191,6 +195,9 @@ $(document).ready(function(){
 		$.getJSON(pageInfo, function(data){
 			printData(data.list, $("#repliesDiv"), $('#template'));
 			printPaging(data.pageMaker, $(".pagination"));
+			
+			$("#modifyModal").modal('hide');
+			$("#replycntSmall").html("[ " + data.pageMaker.totalCount + " ]")
 		});
 	}
 	

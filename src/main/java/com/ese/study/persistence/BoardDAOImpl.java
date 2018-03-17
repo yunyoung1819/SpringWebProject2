@@ -108,4 +108,11 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		session.update(namespace + ".updateReplyCnt", paramMap);
 	}
+
+	// 특정 게시물의 조회 수를 1씩 증가하도록 처리
+	@Override
+	public void updateViewCnt(Integer bno) throws Exception {
+		
+		session.update(namespace + ".updateViewCnt", bno);
+	}
 }

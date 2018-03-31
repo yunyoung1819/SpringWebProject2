@@ -48,9 +48,18 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO dao;
 	
+	@Transactional
 	@Override
 	public void regist(BoardVO board) throws Exception {
 		dao.create(board);
+		
+		String[] files = board.getFiles();
+		
+		if(files == null) { return; }
+		
+		for(String fileName : files){
+			dao.addAttach(fileName);
+		}
 	}
 
 	@Transactional(isolation=Isolation.READ_COMMITTED)  // 격리 수준은 대부분의 데이터베이스가 기존 사용 수준. 다른 연결이 커밋하지 않은 데이터는 볼 수 없다

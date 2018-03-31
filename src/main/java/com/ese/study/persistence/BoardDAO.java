@@ -36,6 +36,8 @@ public interface BoardDAO {
 	
 	public void updateReplyCnt(Integer bno, int amount) throws Exception; // 댓글의 숫자를 변경
 	
-	public void updateViewCnt(Integer bno) throws Exception; // 특정 게시물의 조회 수를 1ㅣ씩 증가
+	public void updateViewCnt(Integer bno) throws Exception; // 특정 게시물의 조회 수를 1씩 증가
+	
+	public void addAttach(String fullName) throws Exception; // 첨부파일 정보를 저장하는 기능
 	
 }

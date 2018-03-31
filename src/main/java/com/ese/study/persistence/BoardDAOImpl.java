@@ -115,4 +115,11 @@ public class BoardDAOImpl implements BoardDAO {
 		
 		session.update(namespace + ".updateViewCnt", bno);
 	}
+
+	// 게시물 첨부파일 정보 저장
+	@Override
+	public void addAttach(String fullName) throws Exception {
+		
+		session.insert(namespace + ".addAttach", fullName);
+	}
 }

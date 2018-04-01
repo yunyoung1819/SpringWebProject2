@@ -7,7 +7,7 @@
 * DB : MySQL
 * Git URL : https://github.com/yunyoung1819/SpringWebProject2.git
 
-![사진](C:\Users\Administrator\Desktop\이미지\블로그\토이프로젝트1.jpg)
+![프로젝트화면](C:\Users\Administrator\Desktop\이미지\블로그\토이프로젝트1.PNG)
 
 #주요기능
 * 게시판 CRUD (등록, 조회, 수정, 삭제)

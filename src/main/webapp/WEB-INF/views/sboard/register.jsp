@@ -12,6 +12,23 @@ background-color: lightslategrey;
 margin: auto;
 }
 </style>
+
+<!-- 첨부파일용 템플릿 handlebars 추가 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js">
+</script>
+
+<!-- 첨부파일용 템플릿 추가하기 -->
+<script id="template" type="text/x-handlebars-template">
+<li>
+	<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}"
+alt="Attachment"></span>
+	<div class="mail-box-attachment-info">
+	<a href="{{getLink}}" class="mail-box-attachment-name">{{fileName}}</a>
+	<a href="{{fullName}}"
+		class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>	
+</div>
+</li>
+</script>
 <!-- Main content -->
 <section class="content">
 	<div class="row">

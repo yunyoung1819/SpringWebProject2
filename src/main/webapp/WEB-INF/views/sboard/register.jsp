@@ -29,6 +29,9 @@ alt="Attachment"></span>
 </div>
 </li>
 </script>
+<script>
+	var template = Handlebars.compile($("#template").html());
+</script>
 <!-- Main content -->
 <section class="content">
 	<div class="row">

@@ -11,6 +11,12 @@
 	background-color: lightslategrey;
 	margin: auto;
 }
+
+small{
+	margin-left: 3px;
+	font-weight: bold;
+	color: gray;
+}
 </style>
 
 <!-- Main content -->

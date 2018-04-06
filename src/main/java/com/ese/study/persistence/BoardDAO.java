@@ -40,4 +40,6 @@ public interface BoardDAO {
 	
 	public void addAttach(String fullName) throws Exception; // 첨부파일 정보를 저장하는 기능
 	
+	public List<String> getAttach(Integer bno) throws Exception; // 게시물 첨부 파일 목록 조회
+	
 }

@@ -38,4 +38,6 @@ public interface BoardService {
 	public int listSearchCount(SearchCriteria cri) throws Exception; // �˻�
 	
 	public void excelDown(HttpServletRequest request, HttpServletResponse response, Map<String, Object> paramMap) throws Exception; 
+	
+	public List<String> getAttach(Integer bno) throws Exception; // 첨부파일을 조회하는 기능
 }

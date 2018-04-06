@@ -1,10 +1,14 @@
 package com.ese.study.util;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
+
+import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
@@ -82,5 +86,23 @@ public class UploadFileUtils {
 		}
 	}
 	
+	/* 썸네일 이미지 생성하기 */
+	private static String makeThumbnail(String uploadPath, String path, String fileName) throws Exception {
+		
+		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + path, fileName));
+		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT, 100);
+		String thumbnailName = uploadPath + path + File.separator + "s_" + fileName; //썸네일 파일명
+		File newFile = new File(thumbnailName);
+		String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
+		
+		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
+		return thumbnailName.substring(uploadPath.length()).replace(File.separatorChar, '/');
+	}
+	
+	/* 아이콘 생성 */
+	private static String makeIcon(String uploadPath, String path, String fileName) throws Exception{
+		String iconName = uploadPath + path + File.separator + fileName;
+		return iconName.substring(uploadPath.length()).replace(File.separatorChar, '/');
+	}
 	
 }

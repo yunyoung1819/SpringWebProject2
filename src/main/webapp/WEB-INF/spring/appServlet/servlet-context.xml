@@ -23,6 +23,14 @@
 	
 	<context:component-scan base-package="com.ese.study.controller" />
 	
-	
-	
+	<!-- 스프링 파일 업로드로 들어오는 데이터를 처리하는 객체 multipartResolver -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+	<!-- 서버의 파일 저장 경로 설정 -->
+	<!-- 파일을 저장할 경로는 상수처럼 사용되기 때문에 servlet-context.xml 파일을 이용해서 특정 경로를 문자열로 설정  -->
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<beans:constructor-arg value="C:\\zzz\\upload">
+		</beans:constructor-arg>
+	</beans:bean>
 </beans:beans>

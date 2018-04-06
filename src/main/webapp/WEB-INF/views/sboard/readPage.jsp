@@ -3,7 +3,8 @@
     
 <%@include file="../include/header.jsp" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-
+<!-- upload.js 포함 -->
+<script type="text/javascript" src="/resources/js/upload.js"></script>
 <!-- Main content -->
 <section class="content">
 	<div class="row">
@@ -39,6 +40,8 @@
 					</div>
 				</div>
 				<!-- /.box-body -->
+
+				<ul class="mailbox-attachments clearfix uploadedList"></ul>
 				
 				<div class="box-footer">
 					<button type="submit" class="btn btn-warning" id="modifyBtn">수정</button>
@@ -142,6 +145,22 @@ $(document).ready(function(){
 		formObj.submit();
 	});
 	
+	// 첨부파일에 대한 템플릿과 JavaScript 처리 부분
+	var bno = ${boardVO.bno};
+	var template = Handlebars.compile($("#templateAttach").html());
+	
+	$.getJSON("/sboard/getAttach/" + bno, function(list){
+		
+		$(list).each(function(){
+			
+			var fileInfo = getFileInfo(this);
+			
+			var html = template(fileInfo);
+			
+			$(".uploadedList").append(html);
+			
+		});
+	});
 });
 </script>
 
@@ -163,6 +182,17 @@ $(document).ready(function(){
 	</div>
 </li>
 {{/each}}
+</script>
+
+<!-- 첨부파일 조회 handlebars 템플릿 -->
+<script id="templateAttach" type="text/x-handlebars-template">
+<li data-src='{{fullName}}'>
+	<span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"></span>
+<div class="mailbox-attachment-info">
+<a href="{{getLink}}" class="mailbox-attachment-name">{{fullName}}</a>
+</span> 
+</div>
+</li>
 </script>
 
 <!-- prettifyDate regdate 에 대한 Javascript의 처리 -->

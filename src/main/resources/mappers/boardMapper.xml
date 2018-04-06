@@ -152,4 +152,9 @@ where bno < 100
 <insert id="addAttach">
 	insert into tbl_attach(fullname, bno) values (#{fullName}, LAST_INSERT_ID())
 </insert>
+
+<!-- 게시물의 첨부파일 목록 조회 -->
+<select id="getAttach" resultType="string">
+	select fullname from tbl_attach where bno = #{bno} order by regdate
+</select>
 </mapper>

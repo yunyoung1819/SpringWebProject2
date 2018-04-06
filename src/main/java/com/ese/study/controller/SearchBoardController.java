@@ -1,6 +1,7 @@
 package com.ese.study.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -12,9 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ese.study.domain.BoardVO;
@@ -154,5 +157,14 @@ public class SearchBoardController {
 		service.excelDown(request, response, paramMap);
 		
 		return null;
+	}
+	
+	// Ajax로 호출되는 특정 게시물의 첨부 파일을 처리하는 메소드
+	// 호출하는 경로는 '/sboard/getAttach/게시물 번호'의 형태가 되고 리턴 타입은 첨부파일의 문자열 리스트 형태
+	@RequestMapping("/getAttach/{bno}")
+	@ResponseBody
+	public List<String> getAttach(@PathVariable("bno") Integer bno) throws Exception{
+		
+		return service.getAttach(bno);
 	}
 }

@@ -2,6 +2,19 @@
     pageEncoding="UTF-8"%>
     
 <%@include file="../include/header.jsp" %>
+<<style type="text/css">
+.popup {position: absolute;}
+.back {background-color: gray; opacity: 0.5; width: 100%; height:300%; overflow:hidden; z-index:1101;}
+.front{
+	z-index:1110; opacity: 1; border: 1px; margin: auto;
+}
+.show{
+	position:relative;
+	max-width: 1200px;
+	max-height: 800px;
+	overflow: auto;
+}
+</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- upload.js 포함 -->
 <script type="text/javascript" src="/resources/js/upload.js"></script>
@@ -115,6 +128,11 @@
 		</div>
 		</div>
 	</div>
+
+	<div class='popup back' style="display:none;"></div>
+		<div id="popup_front" class='popup front' style="display:none;">
+		<img id="popup_img">	
+		</div>	
 </section>
 <!-- /.content-wrapper -->
 
@@ -149,7 +167,7 @@ $(document).ready(function(){
 	var bno = ${boardVO.bno};
 	var template = Handlebars.compile($("#templateAttach").html());
 	
-	$.getJSON("/sboard/getAttach/" + bno, function(list){
+	$.getJSON("/sboard/getAttach/"+bno,function(list){
 		
 		$(list).each(function(){
 			

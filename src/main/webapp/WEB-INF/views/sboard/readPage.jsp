@@ -179,6 +179,32 @@ $(document).ready(function(){
 			
 		});
 	});
+	
+	// 첨부파일이 이미지 파일인 경우는 원본 파일의 경로를 특정한 <div>에 <img> 객체로 만들어서 넣은 후 해당 <div>를 맨 앞쪽으로 보여주게 처리함
+	$(".uploadedList").on("click", ".mailbox-attachment-info a", function(event){
+		
+		var fileLink = $(this).attr("href");
+		
+		if(checkImageType(fileLink)){
+			alert('test');
+			event.preventDefault();
+			
+			var imgTag = $("#popup_img");
+			imgTag.attr("src", fileLink);
+			
+			console.log(imgTag.attr("src"));
+			
+			$(".popup").show('slow');
+			imgTag.addClass("show");
+		}
+	});
+	
+	$("#popup_img").on("click", function(){
+		
+		$(".popup").hide('slow');
+		
+	});
+
 });
 </script>
 

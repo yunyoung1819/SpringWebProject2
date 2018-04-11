@@ -128,4 +128,16 @@ public class BoardDAOImpl implements BoardDAO {
 
 		return session.selectList(namespace + ".getAttach", bno);
 	}
+
+	@Override
+	public void deleteAttach(Integer bno) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void replaceAttach(String fullName, Integer bno) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
 }

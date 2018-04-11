@@ -157,4 +157,13 @@ where bno < 100
 <select id="getAttach" resultType="string">
 	select fullname from tbl_attach where bno = #{bno} order by regdate
 </select>
+
+<!-- 게시물의 첨부파일 수정(기존 첨부파일 삭제 후 새롭게 추가 -->
+<delete id="deleteAttach">
+	delete from tbl_attach where bno = #{bno}
+</delete>
+
+<insert id="replaceAttach">
+	insert into tbl_attach(fullname, bno) values (#{fullName}, #{bno});
+</insert>
 </mapper>

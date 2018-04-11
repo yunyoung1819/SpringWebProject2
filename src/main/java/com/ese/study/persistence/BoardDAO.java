@@ -42,4 +42,8 @@ public interface BoardDAO {
 	
 	public List<String> getAttach(Integer bno) throws Exception; // 게시물 첨부 파일 목록 조회
 	
+	// 게시물 첨부파일 수정 (기존 첨부파일 삭제 후 새롭게 추가)
+	public void deleteAttach(Integer bno) throws Exception;
+	
+	public void replaceAttach(String fullName, Integer bno) throws Exception;
 }

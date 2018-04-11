@@ -131,7 +131,8 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public void deleteAttach(Integer bno) throws Exception {
-		// TODO Auto-generated method stub
+		
+		session.delete(namespace + ".deleteAttach", bno);
 		
 	}
 

@@ -69,9 +69,25 @@ public class BoardServiceImpl implements BoardService {
 		return dao.read(bno);
 	}
 
+	// 게시물 수정 
+	@Transactional
 	@Override
 	public void modify(BoardVO board) throws Exception {
+		// 원래의 게시물 수정
 		dao.update(board);
+		
+		//기존 첨부파일 목록 삭제
+		Integer bno = board.getBno();
+		dao.deleteAttach(bno);
+		
+		// 새로운 첨부파일 정보 입력
+		String[] files = board.getFiles();
+		
+		if(files == null) { return; }
+		
+		for(String fileName : files){
+			dao.replaceAttach(fileName, bno);
+		}
 	}
 
 	@Override

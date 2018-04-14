@@ -90,9 +90,13 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 
+	// 게시물 삭제
+	// 데이터베이스에 저장된 첨부파일의 정보와 게시물 삭제 
+	@Transactional
 	@Override
 	public void remove(Integer bno) throws Exception {
-		dao.delete(bno);
+		dao.deleteAttach(bno);  // 첨부파일 정보 삭제
+		dao.delete(bno);  		// 게시물 삭제
 	}
 
 	@Override

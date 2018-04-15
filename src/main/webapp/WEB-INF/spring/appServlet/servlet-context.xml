@@ -33,4 +33,15 @@
 		<beans:constructor-arg value="C:\\zzz\\upload">
 		</beans:constructor-arg>
 	</beans:bean>
+	
+	<!-- 로그인 servlet-context.xml 의 인터셉터 설정 -->
+	<beans:bean id="sampleInterceptor" class="com.ese.interceptor.SampleInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/doA"/>
+			<mapping path="/doB"/>
+			<beans:ref bean="sampleInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

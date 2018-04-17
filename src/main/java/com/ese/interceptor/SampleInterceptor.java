@@ -24,6 +24,13 @@ public class SampleInterceptor extends HandlerInterceptorAdapter {
 			ModelAndView modelAndView) throws Exception {
 		
 		System.out.println("post handle..........");
+		
+		Object result = modelAndView.getModel().get("result"); //컨트롤러에서 Model 객체에 'result'라는 변수가 저장되었다면
+		
+		if(result != null){
+			request.getSession().setAttribute("result", result);
+			response.sendRedirect("/doA");
+		}
 	}
 
 	@Override

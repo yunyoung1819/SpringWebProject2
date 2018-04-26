@@ -36,5 +36,9 @@ public class UserController {
 	public void loginPOST(LoginDTO dto, HttpSession session, Model model) throws Exception {
 		
 		UserVO vo = service.login(dto);
+		
+		if (vo == null) {
+			return;
+		}
 	}
 }

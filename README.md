@@ -14,5 +14,7 @@
 * 검색 기능
 * 댓글 달기 기능(댓글 추가, 수정, 삭제, 페이징 처리)
 * JXL 라이브러리를 이용한 엑셀 다운로드
+* Spring MultipartForm 을 이용한 File Upload 및 Download
 * Daum Map 지도 API 기능을 이용한 지도 로딩
 * SockJS를 이용한 채팅 문의 기능 
+* Spring Interceptor를 이용한 로그인 기능 

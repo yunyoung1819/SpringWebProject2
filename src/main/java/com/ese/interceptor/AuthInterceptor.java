@@ -18,6 +18,24 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
 	private static final Logger logger = LoggerFactory.getLogger(AuthInterceptor.class);
 
+	// 사용자가 원하는 URI가 무엇인지 보관했다가 로그인 성공 후 해당 경로로 이동
+	private void saveDest(HttpServletRequest req) {
+		String uri = req.getRequestURI();
+		
+		String query = req.getQueryString();
+		
+		if(query == null || query.equals("null")) {
+			query = "";
+		}else{
+			query = "?" + query;
+		}
+		
+		if(req.getMethod().equals("GET")) {
+			logger.info("dest : " + (uri + query));
+			req.getSession().setAttribute("dest", uri + query);
+		}
+	}
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -35,5 +53,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 		
 		return true;
 	}
+	
+	
 	
 }

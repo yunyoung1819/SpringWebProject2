@@ -45,18 +45,27 @@
 		</interceptor>
 	</interceptors>
 	
+	<!--  AuthInterceptor의 설정 : 로그인하지 않은 사용자의 접근 방지. 권한 설정 -->
+	<beans:bean id="authInterceptor" class="com.ese.interceptor.AuthInterceptor"></beans:bean>
+	
 	<!-- 로그인 인터셉터의 servlet-context.xml 의 인터셉터 설정 -->
 	<beans:bean id="loginInterceptor" class="com.ese.interceptor.LoginInterceptor"></beans:bean>
 	
 	<interceptors>
+		
 		<interceptor>
 			<mapping path="/user/loginPost"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
+		
+		<interceptor>
+			<mapping path="/sboard/register"/>
+			<beans:ref bean="authInterceptor"/>
+		</interceptor>
 	</interceptors>
 	
-		<!--  AuthInterceptor의 설정 : 로그인하지 않은 사용자의 접근 방지. 권한 설정 -->
-	<beans:bean id="authInterceptor" class="com.ese.interceptor.AuthInterceptor"></beans:bean>
+	
+	
 	
 </beans:beans>
 

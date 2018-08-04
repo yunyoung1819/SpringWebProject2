@@ -58,8 +58,11 @@
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 		
+		<!-- 게시물에서 등록 작업과 수정/삭제에 대한 인터셉터의 적용 -->
 		<interceptor>
 			<mapping path="/sboard/register"/>
+			<mapping path="/sboard/modifyPage"/>
+			<mapping path="/sboard/removePage"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>

@@ -54,13 +54,13 @@
 				</div>
 				<!-- /.box-body -->
 
-				<ul class="mailbox-attachments clearfix uploadedList"></ul>
-				
-				<div class="box-footer">
+				<ul class="mailbox-attachments clearfix uploadedList">
+				</ul>
+				<c:if test="${login.uid == boardVO.writer}">
 					<button type="submit" class="btn btn-warning" id="modifyBtn">수정</button>
 					<button type="submit" class="btn btn-danger" id="removeBtn">삭제</button>
+				</c:if>
 					<button type="submit" class="btn btn-primary" id="goListBtn">목록가기</button>
-				</div>
 			</div>
 			<!-- /.box -->
 		</div>

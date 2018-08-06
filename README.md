@@ -1,4 +1,3 @@
-# Spring Web Project
 ## Toy Project 1. 스프링을 이용한 게시판 프로젝트
 
 * 기간 : 2018년 1월 ~ 2018년 3월

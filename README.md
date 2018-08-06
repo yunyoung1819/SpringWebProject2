@@ -8,7 +8,7 @@
 * Git URL : https://github.com/yunyoung1819/SpringWebProject2.git
 
 
-#주요기능
+### 주요기능
 * 게시판 CRUD (등록, 조회, 수정, 삭제)
 * 페이징 처리
 * 검색 기능

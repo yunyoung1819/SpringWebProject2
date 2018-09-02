@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
     
 <%@include file="../include/header.jsp" %>
-<<style type="text/css">
+<style type="text/css">
 .popup {position: absolute;}
 .back {background-color: gray; opacity: 0.5; width: 100%; height:300%; overflow:hidden; z-index:1101;}
 .front{
@@ -15,6 +17,12 @@
 	overflow: auto;
 }
 </style>
+
+<div class='popup back' style="display:none;"></div>
+	<div id="popup_front" class='popup front' style="display:none;">
+	<img id="popup_img">	
+</div>	
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- upload.js 포함 -->
 <script type="text/javascript" src="/resources/js/upload.js"></script>
@@ -37,7 +45,6 @@
 				<input type='hidden' name='searchType' value="${cri.searchType}"><!-- 검색 타입 -->
 				<input type='hidden' name='keyword' value="${cri.keyword }"><!-- 검색 단어 -->
 			</form>
-			
 				<div class="box-body">
 					<div class="form-group">
 						<lable for="exampleInputEmail1">Title</lable>
@@ -76,16 +83,27 @@
 				<div class="box-header">
 					<h3 class="box-title">댓글 작성하기</h3>
 				</div>
+			
+			  <c:if test="${not empty login}">
 				<div class="box-body">
 					<label for="newReplyWriter">Writer</label>
-					<input class="form-control" type="text" placeholder="USER ID" id="newReplyWriter">
-					<label for="newReplyText">ReplyText</label>
+					<input class="form-control" type="text" placeholder="USER ID" 
+					id="newReplyWriter" value="${login.uid }" readonly="readonly">
+					<label for="newReplyText">Reply Text</label>
 					<input class="form-control" type="text" placeholder="REPLY TEXT" id="newReplyText">				
 				</div>
+				
 				<!-- /.box-body -->
 				<div class="box-footer">
 					<button type="submit" class="btn btn-primary" id="replyAddBtn">댓글 작성</button>
 				</div>
+			  </c:if>
+			  
+			  <c:if test="${empty login }">
+			  	<div class="box-body">
+			  		<div><a href="javascript:goLogin();">Login Please</a></div>
+			  	</div>
+			  </c:if>
 			</div>
 			
 			<!-- The time line -->
@@ -129,10 +147,6 @@
 		</div>
 	</div>
 
-	<div class='popup back' style="display:none;"></div>
-		<div id="popup_front" class='popup front' style="display:none;">
-		<img id="popup_img">	
-		</div>	
 </section>
 <!-- /.content-wrapper -->
 
@@ -244,8 +258,10 @@ $(document).ready(function(){
 		<h3 class="timeline-header"><strong>{{rno}}</strong> -{{replyer}}</h3>
 		<div class="timeline-body">{{replytext}}</div>
 			<div class="timeline-footer">
-				<a class-"btn btn-primary btn-xs"
+			    {{#eqReplyer replyer }}
+				<a class="btn btn-primary btn-xs"
 					data-toggle="modal" data-target="#modifyModal"> Modify </a>
+				{{eqReplyer}}
 			</div>
 	</div>
 </li>
@@ -263,8 +279,16 @@ $(document).ready(function(){
 </li>
 </script>
 
-<!-- prettifyDate regdate 에 대한 Javascript의 처리 -->
 <script>
+	<!-- 로그인한 사용자만이 작성한 댓글의 수정과 삭제 작업이 가능하도록 처리 -->
+	Handlebars.registerHelper("eqReplyer", function(replyer, block) {
+		var accum = '';
+		if(replyer == '${login.uid}') {
+			accum += block.fn();
+		}
+		return accum;
+	}); 
+	<!-- prettifyDate regdate 에 대한 Javascript의 처리 -->
 	Handlebars.registerHelper("prettifyDate", function(timeValue){
 		
 		var dateObj = new Date(timeValue);

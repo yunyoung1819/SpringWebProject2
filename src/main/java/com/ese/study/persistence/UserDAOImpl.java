@@ -1,5 +1,7 @@
 package com.ese.study.persistence;
 
+import java.sql.Date;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -18,8 +20,20 @@ public class UserDAOImpl implements UserDAO {
 	
 	@Override
 	public UserVO login(LoginDTO dto) throws Exception {
-		
+	
 		return session.selectOne(namespace + ".login", dto);
+	}
+
+	@Override
+	public void keepLogin(String uid, String sessionId, Date next) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public UserVO checkUserWithSessionKey(String value) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

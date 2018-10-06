@@ -17,3 +17,4 @@
 * Daum Map 지도 API 기능을 이용한 지도 로딩
 * SockJS를 이용한 채팅 문의 기능 
 * Spring Interceptor를 이용한 로그인 기능 
+* 세션과 쿠키를 이용한 자동 로그인 기능

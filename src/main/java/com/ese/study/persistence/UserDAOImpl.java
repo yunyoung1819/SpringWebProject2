@@ -1,6 +1,8 @@
 package com.ese.study.persistence;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -25,7 +27,13 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void keepLogin(String uid, String sessionId, Date next) {
-		// TODO Auto-generated method stub
+		
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("uid", uid);
+		paramMap.put("sessionId", sessionId);
+		paramMap.put("next", next);
+		
+		session.update(namespace + ".keepLogin", paramMap);
 		
 	}
 

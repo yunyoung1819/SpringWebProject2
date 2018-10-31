@@ -1,6 +1,6 @@
 package com.ese.study.persistence;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,14 +33,15 @@ public class UserDAOImpl implements UserDAO {
 		paramMap.put("sessionId", sessionId);
 		paramMap.put("next", next);
 		
-		session.update(namespace + ".keepLogin", paramMap);
-		
+		session.update(namespace + ".keeplogin", paramMap); 
 	}
 
 	@Override
 	public UserVO checkUserWithSessionKey(String value) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return session.selectOne(namespace + ".checkUserWithSessionKey", value);
+		
 	}
+
 
 }
